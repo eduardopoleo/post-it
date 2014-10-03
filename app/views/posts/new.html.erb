@@ -1,0 +1,25 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-error">
+    <ul>
+      <%@post.errors.full_messages.each do |msg|%>
+        <li><%=msg %></li>
+      <%end%>
+    </ul>
+  </div>
+<%end%>
+
+<h3>Create a new Post</h3>
+
+<!--
+PURE HTML
+<form action="/posts" method="POST">
+  Title <input type="text" name="title"><br>
+  URL <input type="text" name="url"><br>
+  Description <input type="text" name="description"><br>
+  <input type="submit" value="Submit">
+</form> 
+-->
+
+<div class="well">
+ <%= render 'form' %>
+</div>

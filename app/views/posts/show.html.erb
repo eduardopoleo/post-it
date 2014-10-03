@@ -1,0 +1,13 @@
+<p>
+<!-- Remember that this is the render property in rail that
+iteraters through all the post.categories and applies the _category style to it-->
+  <%= render @post.categories  %>
+</p> 
+<!-- Renders the Shared/title and pass in the value @post.title to be replace
+in the variable title -->
+<%=render 'shared/title', title: @post.title  %>
+<p>
+  <%= @post.description%>
+</p>
+<%= link_to "Edit Post", edit_post_path(@post)%>
+<hr></hr>
