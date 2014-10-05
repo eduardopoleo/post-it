@@ -1,6 +1,6 @@
-<p>
 <!-- Remember that this is the render property in rail that
 iteraters through all the post.categories and applies the _category style to it-->
+<p>
   <%= render @post.categories  %>
 </p> 
 <!-- Renders the Shared/title and pass in the value @post.title to be replace
@@ -9,5 +9,5 @@ in the variable title -->
 <p>
   <%= @post.description%>
 </p>
-<%= link_to "Edit Post", edit_post_path(@post)%>
+  <%= link_to "Edit Post", edit_post_path(@post)%>
 <hr></hr>

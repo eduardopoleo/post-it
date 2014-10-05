@@ -9,4 +9,21 @@
   <li>
     <%= link_to 'New Post!', new_post_path %>
   </li>
+  <!--Remove toggle and caret for a normal nice-looking button -->
+  <div class="btn-group">
+    <button class="btn dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <% @categories.each do |cat| %>
+          <li><%= link_to cat.name, category_path(cat)%></li>
+      <% end %>
+      <li class="divider"></li>
+      <li><%= link_to(new_category_path) do%>
+        <i class="icon-plus"></i>
+        Create Category
+      <%end%>
+      </li>
+    </ul>
+  </div>
 </ul>
+
+

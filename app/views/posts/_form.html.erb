@@ -11,6 +11,9 @@
     <p><strong>Temporary</strong></p>
     <%= f.label :user_id %>
     <%= f.number_field :user_id%>
+    <br/>
     <p>Categories</p> 
+    <%= check_box_tag(:sports) %>
+    <%= label_tag(:sports, "Sports") %>
     <%= f.submit "Post!", class: "btn btn-primary" %>
 <% end %>

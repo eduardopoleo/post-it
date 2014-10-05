@@ -1,0 +1,24 @@
+
+[1mFrom:[0m /home/eduardo/Documents/Tealeaf/postit-template/app/controllers/posts_controller.rb @ line 29 PostsController#create:
+
+    [1;34m21[0m: [1;31mdef[0m [1;34mcreate[0m
+    [1;34m22[0m:   [0;34m# Pure HTML & regular helpers[0m
+    [1;34m23[0m: 
+    [1;34m24[0m:   [0;34m# @post= Post.new[0m
+    [1;34m25[0m:   [0;34m# @post.title = params[:title][0m
+    [1;34m26[0m:   [0;34m# @post.url = params[:url][0m
+    [1;34m27[0m:   [0;34m# @post.description = params[:description][0m
+    [1;34m28[0m:   [0;34m# @post.save[0m
+ => [1;34m29[0m: binding.pry
+    [1;34m30[0m:   @post = [1;34m[4mPost[0m.new(post_params)
+    [1;34m31[0m: 
+    [1;34m32[0m:   [1;31mif[0m @post.save
+    [1;34m33[0m:     flash[[1;32m:notice[0m] = [32m[1;32m"[0m[32mPost successfully created[1;32m"[0m[32m[0m
+    [1;34m34[0m:     redirect_to post_path(@post)
+    [1;34m35[0m:   [1;31melse[0m
+    [1;34m36[0m:     [0;34m# render does not count as new request[0m
+    [1;34m37[0m:     [0;34m# so @post.errors stored in here are passed to the new view[0m
+    [1;34m38[0m:   render [1;32m:new[0m
+    [1;34m39[0m:   [1;31mend[0m
+    [1;34m40[0m: [1;31mend[0m
+
