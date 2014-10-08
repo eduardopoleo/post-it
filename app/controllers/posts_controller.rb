@@ -8,8 +8,11 @@ class PostsController < ApplicationController
   end
 
   def show
+    # this new comment I have to set in order for the show action to show it.
+    # I do not need to define the @post becuase it's already defined.
+    @comment = Comment.new
     # params is a hash where all the request info is stored.
-    # So it basically takes all the info from one side of the request to the other
+    # So it basically takes all the info from one action to the other
     # @post = Post.find(params[:id])
   end
 

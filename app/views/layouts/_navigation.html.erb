@@ -3,12 +3,6 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'link', '' %>
-  </li>
-  <li>
-    <%= link_to 'New Post!', new_post_path %>
-  </li>
   <!--Remove toggle and caret for a normal nice-looking button -->
   <div class="btn-group">
     <button class="btn dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></button>
@@ -24,6 +18,14 @@
       </li>
     </ul>
   </div>
+
+  <div class="btn-group">
+  <%= link_to(new_post_path) do %>
+    <button class="btn btn-success"><i class="icon-plus"></i> Post!</button>
+  <%end%>
+  </div>
 </ul>
+
+
 
 

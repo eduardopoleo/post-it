@@ -1,13 +1,36 @@
 <!-- Remember that this is the render property in rail that
 iteraters through all the post.categories and applies the _category style to it-->
-<p>
-  <%= render @post.categories  %>
-</p> 
+<%= render 'shared/categories', obj: @post.categories %> 
 <!-- Renders the Shared/title and pass in the value @post.title to be replace
 in the variable title -->
+<p class="pull-right">[<%= link_to "Edit Post", edit_post_path(@post) %>]</p>
+
 <%=render 'shared/title', title: @post.title  %>
-<p>
-  <%= @post.description%>
-</p>
-  <%= link_to "Edit Post", edit_post_path(@post)%>
+
+
+<p><%= @post.description%></p>
+<hr/>
+
+<%= render 'shared/errors', obj: @comment %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.label :body  %>
+  <%= f.text_area :body %>
+  <br/>
+  <%= f.submit "Post Comment", class: "btn btn-primary" %>
+<% end %>
+
 <hr></hr>
+
+<h3><%= @post.comments.size%> Comments</h3>
+<hr/>
+
+<% @post.comments.each do |comment| %>
+  <div class="row">
+    <div class="well span8">
+      <%=comment.body %>
+      <p><span class ='quiet'>by</span> <%=link_to comment.creator.name,'#' %> <small> at <%=fix_date(comment)%></small></p>
+    </div>
+  </div>
+<% end %>
+

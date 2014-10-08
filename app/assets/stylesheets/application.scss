@@ -31,11 +31,15 @@ div.nav_item {
   float: left;
 }
 
-.label  {
+
+.label{
   a, a:hover, a:focus {
     color: #fff;
     text-decoration: none;
   }
+}
+.badge{
+  @extend .label;
 }
 
 div.comment_votes {

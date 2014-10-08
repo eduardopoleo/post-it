@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+  <div class='row'>
+    <div class="well span8">
+      
+      <%= render 'shared/categories', obj: post.categories %>
+
+      <h4><%= link_to post.title , fix_url(post.url) %></h4>  
+      <p><%= post.description%></p>
+      <p><span class ='quiet'>posted by</span> <%=link_to post.creator.name, '#'%> <small> at <%=fix_date(post)%></small></p>
+
+      <small><%=link_to "#{post.comments.size} comments", post_path(post) %></small> 
+    </div>
+  </div>
+<% end %>
