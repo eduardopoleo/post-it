@@ -1,0 +1,11 @@
+<div class="well">
+  <%=form_for @user do |f|%>
+    <%=f.label :name%>
+    <%=f.text_field :name %>
+    <br/>
+    <%=f.label :password%>
+    <%=f.password_field :password%>
+    <br/>
+    <%=f.submit class: 'btn btn-primary'%>
+  <%end%>
+</div>

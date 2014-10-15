@@ -9,16 +9,16 @@
       <%= f.label :description %>
       <%= f.text_area :description%>
       <br/>
-      <p><strong>Temporary</strong></p>
-      <%= f.label :user_id %>
-      <%= f.number_field :user_id%>
-      <br/>
       <%= f.label "Categories" %>
       <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |cat|%>
         <%=cat.label(class: 'checkbox inline') {cat.check_box() + cat.text } %>
       <%end%>
       <br/>
       <br/>
-      <%= f.submit "Post!", class: "btn btn-primary" %>
+      <% if posting == true %>
+        <%= f.submit "Post!", class: "btn btn-primary" %>
+      <% else %>
+        <%= f.submit "Update!", class: "btn btn-primary" %>
+      <% end %>
   <% end %>
 </div>

@@ -1,13 +1,27 @@
 <% @posts.each do |post| %>
   <div class='row'>
-    <div class="well span8">
-      
-      <%= render 'shared/categories', obj: post.categories %>
 
+    <div class="well span0 text-center">
+    <% if logged_in? %>
+      <%= link_to(vote_post_path(post, vote: true), method: 'post' ) do %>
+        <i class = 'icon-arrow-up'></i>
+      <% end %>
+      <br/>
+    <% end %>
+      <%=post.total_value%> votes
+    <% if logged_in? %>
+      <br/>
+      <%= link_to(vote_post_path(post, vote: false), method: 'post' ) do %>
+        <i class = 'icon-arrow-down'></i>
+      <% end %>
+    <% end %>
+    </div>
+
+    <div class="well span8">
+      <%= render 'shared/categories', obj: post.categories %>
       <h4><%= link_to post.title , fix_url(post.url) %></h4>  
       <p><%= post.description%></p>
-      <p><span class ='quiet'>posted by</span> <%=link_to post.creator.name, '#'%> <small> at <%=fix_date(post)%></small></p>
-
+      <p><span class ='quiet'>posted by</span> <%=link_to post.creator.name, user_path(post.creator)%> <small> at <%=fix_date(post)%></small></p>
       <small><%=link_to "#{post.comments.size} comments", post_path(post) %></small> 
     </div>
   </div>

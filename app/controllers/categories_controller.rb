@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :require_user, except: [:show]
   before_action :set_categories
 
   def show
@@ -24,8 +25,5 @@ class CategoriesController < ApplicationController
   private
   def category_params
     params.require(:category).permit!
-  end
-  def set_categories
-    @categories = Category.all
   end
 end

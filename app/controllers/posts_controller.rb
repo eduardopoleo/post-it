@@ -1,15 +1,16 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show,:edit,:update]
+  before_action :set_post, only: [:show,:edit,:update, :vote]
   before_action :set_categories
+
+  before_action :require_user, except:[:index, :show]
   
   def index
-    #@categories = Category.all
     @posts = Post.all
   end
 
   def show
     # this new comment I have to set in order for the show action to show it.
-    # I do not need to define the @post becuase it's already defined.
+    # I do not need to define the @post because it's already defined.
     @comment = Comment.new
     # params is a hash where all the request info is stored.
     # So it basically takes all the info from one action to the other
@@ -25,15 +26,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    # Pure HTML & regular helpers
-
-    # @post= Post.new
-    # @post.title = params[:title]
-    # @post.url = params[:url]
-    # @post.description = params[:description]
-    # @post.save
     @post = Post.new(post_params)
-
+    @post.creator = current_user
     if @post.save
       flash[:notice] = "Post successfully created"
       redirect_to post_path(@post)
@@ -45,11 +39,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # @post = Post.find(params[:id])
   end
 
   def update
-    # @post = Post.find(params[:id])
 
     if @post.update(post_params)
       flash[:notice] = "Post successfully updated"
@@ -59,6 +51,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    @vote = Vote.create(creator: current_user, voteable: @post, vote: params[:vote])
+
+    if @vote.save
+      flash[:notice] = 'Your vote was added'
+    else
+      flash[:error] = "You can't vote twice on the same item"
+    end    
+    redirect_to :back
+  end
   # here starts the strong params definition.
   private
 
@@ -68,14 +70,9 @@ class PostsController < ApplicationController
     # Permit tells which are allowed for mass updating
     # The constructions params.require(:post) assumes a nested structure
     params.require(:post).permit! 
-
   end
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def set_categories
-    @categories = Category.all
   end
 end
