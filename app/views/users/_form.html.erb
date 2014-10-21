@@ -1,11 +1,17 @@
 <div class="well">
   <%=form_for @user do |f|%>
+    <div class="control-group">
     <%=f.label :name%>
     <%=f.text_field :name %>
-    <br/>
+    </div>
+    <div class="control-group">
     <%=f.label :password%>
     <%=f.password_field :password%>
-    <br/>
+    </div>
+    <div class="control-group">
+      <%=f.label :time_zone%>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+    </div>
     <%=f.submit class: 'btn btn-primary'%>
   <%end%>
 </div>

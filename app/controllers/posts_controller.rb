@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_categories
 
   before_action :require_user, except:[:index, :show]
+  before_action :require_same_user, only: [:edit, :update]
   
   def index
     @posts = Post.all
@@ -72,5 +73,12 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find_by(slug: params[:id])
+  end
+
+  def require_same_user
+    if current_user != @post.creator and !current_user.admin?
+      flash[:error] = 'Your are not allowed to modify that!'
+      redirect_to post_path(@post)
+    end
   end
 end

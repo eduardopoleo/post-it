@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
 
   before_save :generate_slug
 
+# Code related to role
+  def admin?
+    self.role == "admin"
+  end
+
+#Code related to slugging
   def remove_ending_dash(string)
     if string.last.match(/\w/)
       string

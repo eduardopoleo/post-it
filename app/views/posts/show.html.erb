@@ -3,7 +3,7 @@ iteraters through all the post.categories and applies the _category style to it-
 <%= render 'shared/categories', obj: @post.categories %> 
 <!-- Renders the Shared/title and pass in the value @post.title to be replace
 in the variable title -->
-<% if logged_in? %>
+<% if logged_in? && (current_user == @post.creator || current_user.admin?)%>
   <p class="pull-right">[<%= link_to "Edit Post", edit_post_path(@post) %>]</p>
 <%end%>
 <%=render 'shared/title', title: @post.title  %>
