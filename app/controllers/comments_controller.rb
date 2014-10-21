@@ -24,11 +24,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @vote = Vote.create(creator: current_user, voteable: @comment, vote: params[:vote])
 
-    if @vote.save
-      flash[:notice] = 'Your vote was added'
-    else
-      flash[:error] = "You can't vote twice on the same item"
-    end    
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
 end

@@ -54,12 +54,10 @@ class PostsController < ApplicationController
   def vote
     @vote = Vote.create(creator: current_user, voteable: @post, vote: params[:vote])
 
-    if @vote.save
-      flash[:notice] = 'Your vote was added'
-    else
-      flash[:error] = "You can't vote twice on the same item"
-    end    
-    redirect_to :back
+    respond_to do |format|
+        format.js
+    end
+  
   end
   # here starts the strong params definition.
   private
@@ -73,6 +71,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
 end

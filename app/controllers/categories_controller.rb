@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :set_categories
 
   def show
-    @category = Category.find(params[:id])  
+    @category = Category.find_by(slug: params[:id])  
     @posts = @category.posts
   end
 
