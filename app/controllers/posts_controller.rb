@@ -54,7 +54,6 @@ class PostsController < ApplicationController
 
   def vote
     @vote = Vote.create(creator: current_user, voteable: @post, vote: params[:vote])
-
     respond_to do |format|
         format.js
     end
